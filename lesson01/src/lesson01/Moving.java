@@ -1,7 +1,7 @@
 package lesson01;
 
 public interface Moving {
-    void run(int ivDistance);
-    void jump(int ivHeight);
-    void chooseAction(Rising rising);
+    boolean run(int ivDistance);
+    boolean jump(int ivHeight);
+    boolean chooseAction(Rising rising);
 }

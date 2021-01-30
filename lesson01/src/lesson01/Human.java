@@ -8,26 +8,36 @@ public class Human implements Moving {
         this.maxHeight = maxHeight;
     }
     @Override
-    public void run(int ivDistance){
-        if (ivDistance <= maxDistance)
+    public boolean run(int ivDistance){
+        if (ivDistance <= maxDistance) {
             System.out.println("I'm running " + ivDistance + " meters");
-        else
+            return true;
+        }
+        else {
             System.out.println(ivDistance + " is too long for me. My max is " + maxDistance);
+            return false;
+        }
     }
     @Override
-    public void jump(int ivHeight){
-        if (ivHeight <= maxHeight)
+    public boolean jump(int ivHeight){
+        if (ivHeight <= maxHeight){
             System.out.println("I'm jumping over " + ivHeight + " meters");
-        else
+            return true;
+        }
+        else {
             System.out.println(ivHeight + " is too high for me. My max is " + maxHeight);
+            return false;
+        }
     }
 
     @Override
-    public void chooseAction(Rising rising) {
+    public boolean chooseAction(Rising rising) {
         if (rising instanceof Stone)
-            jump(((Stone) rising).getHeight());
+            return jump(((Stone) rising).getHeight());
         else if (rising instanceof Street)
-            run(((Street) rising).getLength());
+            return run(((Street) rising).getLength());
+        else
+            return false;
     };
 
 }

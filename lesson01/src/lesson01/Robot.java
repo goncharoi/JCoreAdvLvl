@@ -8,26 +8,36 @@ public class Robot implements Moving {
         this.maxHeight = maxHeight;
     }
     @Override
-    public void run(int ivDistance){
-        if (ivDistance <= maxDistance)
+    public boolean run(int ivDistance){
+        if (ivDistance <= maxDistance) {
             System.out.println("IT IS RUNNING " + ivDistance + " M");
-        else
+            return true;
+        }
+        else {
             System.out.println(ivDistance + " - SHORT DUMP! MAX LENGTH FOR IT IS " + maxDistance);
+            return false;
+        }
 
     }
     @Override
-    public void jump(int ivHeight){
-        if (ivHeight <= maxHeight)
+    public boolean jump(int ivHeight){
+        if (ivHeight <= maxHeight) {
             System.out.println("IT IS JUMPING " + ivHeight + " M");
-        else
+            return true;
+        }
+        else {
             System.out.println(ivHeight + " - BLUE SCREEN... MAX HEIGHT FOR IT IS " + maxHeight);
+            return false;
+        }
     }
 
     @Override
-    public void chooseAction(Rising rising) {
+    public boolean chooseAction(Rising rising) {
         if (rising instanceof Stone)
-            jump(((Stone) rising).getHeight());
+            return jump(((Stone) rising).getHeight());
         else if (rising instanceof Street)
-            run(((Street) rising).getLength());
+            return run(((Street) rising).getLength());
+        else
+            return false;
     };
 }

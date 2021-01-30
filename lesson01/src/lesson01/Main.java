@@ -23,8 +23,10 @@ public class Main {
         };
 //Каждое препятствие заставляет участника делать специфическое для препятствия действие
         for (Rising r:risings) {
-            for (Moving m: movings) {
-                m.chooseAction(r);
+            for (int i = 0; i < movings.length; i++) {
+                if (movings[i] != null) 
+                    if (!movings[i].chooseAction(r))
+                        movings[i] = null;
             }
         }
 

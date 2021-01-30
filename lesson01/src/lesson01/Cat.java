@@ -8,25 +8,35 @@ public class Cat implements Moving {
         this.maxHeight = maxHeight;
     }
     @Override
-    public void run(int ivDistance){
-        if (ivDistance <= maxDistance)
+    public boolean run(int ivDistance){
+        if (ivDistance <= maxDistance) {
             System.out.println("Myau Myau " + ivDistance + " meters");
-        else
+            return true;
+        }
+        else {
             System.out.println(ivDistance + " - fsssssss! Myau " + maxDistance);
+            return false;
+        }
     }
     @Override
-    public void jump(int ivHeight){
-        if (ivHeight <= maxHeight)
+    public boolean jump(int ivHeight){
+        if (ivHeight <= maxHeight) {
             System.out.println("Myau Myau " + ivHeight + " meters");
-        else
+            return true;
+        }
+        else {
             System.out.println(ivHeight + " - phsssssss! Myau " + maxHeight);
+            return false;
+        }
     }
 
     @Override
-    public void chooseAction(Rising rising) {
+    public boolean chooseAction(Rising rising) {
         if (rising instanceof Stone)
-            jump(((Stone) rising).getHeight());
+            return jump(((Stone) rising).getHeight());
         else if (rising instanceof Street)
-            run(((Street) rising).getLength());
+            return run(((Street) rising).getLength());
+        else
+            return false;
     };
 }
